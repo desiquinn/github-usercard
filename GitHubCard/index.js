@@ -4,12 +4,17 @@
 */
 
 // This returns a promise
-axios.get("https://api.github.com/users/desiquinn")
+const promise = axios.get('https://api.github.com/users/desiquinn')
 
-// .then chains off of the promise and allows you to get the data from the promise
-
-.then(data =>{
+// .then chains off of the promise and allows you to get the data from the promise if successful
+promise.then(data => {
+  // This is where we get results from the server
   console.log(data)
+})
+
+// .catch chains off of the promise and allows you to get the value from the promise if failed
+.catch(error => {
+  console.log(error)
 })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -22,6 +27,8 @@ axios.get("https://api.github.com/users/desiquinn")
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
+
+functionName(promise);
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -54,6 +61,39 @@ const followersArray = [];
 </div>
 
 */
+
+function functionName(argument) {
+  const card = document.createElement('div');
+  const userImage = document.createElement('img');
+  const cardInfo = document.createElement('div');
+  const name = document.createElement('h3');
+  const username = document.createElement('p');
+  const location = document.createElement('p');
+  const profile = document.createElement('p');
+  const githubURL = document.createElement('a');
+  const follower = document.createElement('p');
+  const following = document.createElement('p');
+  const bio = document.createElement('p');
+
+  card.classList.add('card');
+  userImage.setAttribute('src', '')
+  cardInfo.classList.add('card-info');
+  name.classList.add('name');
+  username.classList.add('username');
+
+  card.appendChild(img);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(name);
+  cardInfo.appendChild(username);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+    profile.appendChild(githubURL);
+  cardInfo.appendChild(follower);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
+  
+
+}
 
 /* List of LS Instructors Github username's: 
   tetondan
