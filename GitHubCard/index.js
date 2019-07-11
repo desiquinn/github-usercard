@@ -3,6 +3,15 @@
            https://api.github.com/users/<your name>
 */
 
+// This returns a promise
+axios.get("https://api.github.com/users/desiquinn")
+
+// .then chains off of the promise and allows you to get the data from the promise
+
+.then(data =>{
+  console.log(data)
+})
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
