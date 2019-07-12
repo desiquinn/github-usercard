@@ -3,18 +3,24 @@
            https://api.github.com/users/<your name>
 */
 
+const cards = document.querySelector(".cards");
+console.log(cards)
+
 // This returns a promise
-const promise = axios.get('https://api.github.com/users/desiquinn')
+axios.get('https://api.github.com/users/desiquinn')
 
 // .then chains off of the promise and allows you to get the data from the promise if successful
-promise.then(data => {
+.then(data => {
   // This is where we get results from the server
-  console.log(data)
+  console.log(data.data)
+  const user = data.data
+  const userURL = createUserCard(user);
+  cards.appendChild(userURL)
 })
 
 // .catch chains off of the promise and allows you to get the value from the promise if failed
 .catch(error => {
-  console.log(error)
+  console.log(`ERROR: ${error}`)
 })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -27,8 +33,6 @@ promise.then(data => {
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
-const cards = document.querySelector('.cards');
-cards.appendChild()
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -62,7 +66,7 @@ const followersArray = [];
 
 */
 
-function functionName(user) {
+function createUserCard(user) {
   //created elements
   const card = document.createElement('div');
   const userImage = document.createElement('img');
