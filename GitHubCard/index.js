@@ -27,8 +27,8 @@ promise.then(data => {
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
-
-functionName(promise);
+const cards = document.querySelector('.cards');
+cards.appendChild()
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -62,7 +62,8 @@ const followersArray = [];
 
 */
 
-function functionName(argument) {
+function functionName(user) {
+  //created elements
   const card = document.createElement('div');
   const userImage = document.createElement('img');
   const cardInfo = document.createElement('div');
@@ -71,29 +72,43 @@ function functionName(argument) {
   const location = document.createElement('p');
   const profile = document.createElement('p');
   const githubURL = document.createElement('a');
-  const follower = document.createElement('p');
+  const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
 
+  //set class names
   card.classList.add('card');
-  userImage.setAttribute('src', '')
   cardInfo.classList.add('card-info');
   name.classList.add('name');
   username.classList.add('username');
 
-  card.appendChild(img);
+  //add content
+  userImage.src = user.avatar_url;
+  name.textContent = user.name;
+  username.textContent = user.login;
+  location.textContent = user.location;
+  profile.textContent = `Profile: `;
+  githubURL.href = user.url;
+  githubURL.textContent = 'user.url';
+  followers.textContent = `Followers: ${user.followers}`;
+  following.textContent = `Following: ${user.following}`;
+  bio.textContent = `Bio: ${user.bio}`
+
+  //format the structure
+  card.appendChild(userImage);
   card.appendChild(cardInfo);
   cardInfo.appendChild(name);
   cardInfo.appendChild(username);
   cardInfo.appendChild(location);
   cardInfo.appendChild(profile);
     profile.appendChild(githubURL);
-  cardInfo.appendChild(follower);
+  cardInfo.appendChild(followers);
   cardInfo.appendChild(following);
   cardInfo.appendChild(bio);
-  
 
+  return card;
 }
+
 
 /* List of LS Instructors Github username's: 
   tetondan
