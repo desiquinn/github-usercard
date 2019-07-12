@@ -16,6 +16,8 @@ axios.get('https://api.github.com/users/desiquinn')
   const user = data.data
   const userURL = createUserCard(user);
   cards.appendChild(userURL)
+  const username = user.login
+  followerPull(username)
 })
 
 // .catch chains off of the promise and allows you to get the value from the promise if failed
@@ -44,8 +46,28 @@ axios.get('https://api.github.com/users/desiquinn')
           user, and adding that card to the DOM.
 */
 
-const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+const followersArray = [];
+// console.log(followersArray)
+
+function followerPull(username) {
+  axios.get(`https://api.github.com/users/${username}/followers`)
+
+  .then(followerData => {
+    console.log(followerData.data)
+    followerData.data.forEach(follower => {
+      followersArray.push(follower.login)
+    })
+  })
+
+  .catch(followerError => {
+    console.log(followerError)
+  })
+
+
+}
+
 console.log(followersArray)
+// followersArray.push(followerPull())
 
 followersArray.forEach(user => {
   axios.get(`https://api.github.com/users/${user}`)
@@ -54,6 +76,7 @@ followersArray.forEach(user => {
     console.log(followerData.data)
     const follower = followerData.data
     const followerURL = createUserCard(follower)
+    console.log("FollowerURL: ", followerURL)
     cards.appendChild(followerURL)
   })
 
@@ -137,3 +160,4 @@ function createUserCard(user) {
   luishrd
   bigknell
 */
+
